@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>View Details</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 500px;
+      padding: 24px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 10px 8px;
+      border-bottom: 1px solid #eee;
+      vertical-align: top;
+    }
+
+    th {
+      width: 35%;
+      color: #333;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #007bff;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>User Details</h2>
+    <table id="userTable"></table>
+    <a class="back-link" href="index.html">Back to form</a>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const fields = [
+      { key: 'name', label: 'Name' },
+      { key: 'username', label: 'Username' },
+      { key: 'email', label: 'Email' },
+      { key: 'password', label: 'Password' },
+      { key: 'age', label: 'Age' },
+      { key: 'mobile', label: 'Mobile' },
+      { key: 'address', label: 'Address' }
+    ];
+
+    const table = document.getElementById('userTable');
+    let rows = '';
+
+    fields.forEach(field => {
+      const value = params.get(field.key) || 'Not provided';
+      rows += `
+        <tr>
+          <th>${field.label}</th>
+          <td>${value}</td>
+        </tr>
+      `;
+    });
+
+    table.innerHTML = rows;
+  </script>
+</body>
+</html>
